@@ -1,7 +1,5 @@
 package github.robotters.rewrite;
 
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import github.robotters.rewrite.util.ImuHandler;
@@ -12,13 +10,11 @@ Class.
 */
 public class RobotProps {
     public HardwareMap mHardwaremap;
-    public GamepadEx gamepad1;
 
     public ImuHandler imuHandler;
 
-    public RobotProps(HardwareMap hwMap, Gamepad gamepad1, ImuHandler imuHandler) {
+    public RobotProps(HardwareMap hwMap, ImuHandler imuHandler) {
         this.mHardwaremap = hwMap;
-        this.gamepad1 = new GamepadEx(gamepad1);
         this.imuHandler = imuHandler;
     }
 }

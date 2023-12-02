@@ -30,21 +30,20 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         register(mDriveTrain, mAirplaneLauncher, mArm, mClaw);
     }
 
-    public void teleopInit() {
+    public void teleopInit(TeleopProps props) {
         // Set Default Drive Command to Default RobotCentricDriveCommand
         mDriveTrain.setDefaultCommand(
                 new DriveTrain.DefaultDriveCommand(
-                        mDriveTrain, mRobotProps.gamepad1, mRobotProps.imuHandler));
+                        mDriveTrain, props.gamepad1, mRobotProps.imuHandler));
 
         // Set Arm Default Run Command
-        mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, mRobotProps.gamepad1));
+        mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad1));
 
         // Set Claw Default Run Command
-        mClaw.setDefaultCommand(new Claw.DefaultClawCommand(mClaw, mRobotProps.gamepad1));
+        mClaw.setDefaultCommand(new Claw.DefaultClawCommand(mClaw, props.gamepad1));
 
         // Launch Airplane When Button Is Pressed
-        mRobotProps
-                .gamepad1
+        props.gamepad1
                 .getGamepadButton(Constants.AirplaneLauncherLaunchButton)
                 .whenPressed(new InstantCommand(mAirplaneLauncher::Launch, mAirplaneLauncher));
     }

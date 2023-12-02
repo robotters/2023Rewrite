@@ -6,8 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import github.robotters.rewrite.Constants;
 import github.robotters.rewrite.Robot;
 import github.robotters.rewrite.RobotProps;
+import github.robotters.rewrite.TeleopProps;
 import github.robotters.rewrite.util.BulkReader;
 import github.robotters.rewrite.util.ImuHandler;
+import github.robotters.rewrite.util.RobotHolder;
 import github.robotters.rewrite.util.RobotStateLogger;
 
 @TeleOp
@@ -15,18 +17,18 @@ public class Teleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         ImuHandler imuHandler = new ImuHandler(hardwareMap, 0.0);
-        RobotProps props = new RobotProps(hardwareMap, gamepad1, imuHandler);
+        RobotProps props = new RobotProps(hardwareMap, imuHandler);
 
         // Update the Driver Station with Telemetry every N Milliseconds
         telemetry.setMsTransmissionInterval(Constants.TelemetrySendInterval);
 
-        Robot r = new Robot(props);
+        Robot r = RobotHolder.getRobot(props);
 
         RobotStateLogger logger = new RobotStateLogger(r);
 
         BulkReader bulkReader = new BulkReader(hardwareMap);
 
-        r.teleopInit();
+        r.teleopInit(new TeleopProps(gamepad1));
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
