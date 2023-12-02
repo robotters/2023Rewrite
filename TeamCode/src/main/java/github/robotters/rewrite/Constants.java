@@ -13,6 +13,10 @@ public class Constants {
     public static String AirplaneLauncherServoKey = "airplane-servo";
     public static double AirplaneLauncherStartPos = 0.0, AirplaneLauncherEndPos = 1.0;
 
+    // CLAW INFO:
+    // PLEASE MAKE THIS NON-CR
+    public static String ClawServoKey = "claw-servo";
+
     // ARM INFO:
     public static String ArmMotorKey = "arm-motor";
 
@@ -22,5 +26,6 @@ public class Constants {
     public static GamepadKeys.Button DriveBaseModeSwitchButton = GamepadKeys.Button.Y,
             AirplaneLauncherLaunchButton = GamepadKeys.Button.B,
             ArmUpPositionBinding = GamepadKeys.Button.A,
-            ArmDownPositionBinding = GamepadKeys.Button.X;
+            ArmDownPositionBinding = GamepadKeys.Button.X,
+            ClawOpenCloseBinding = GamepadKeys.Button.LEFT_BUMPER;
 }
