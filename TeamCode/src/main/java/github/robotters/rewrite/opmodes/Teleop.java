@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import github.robotters.rewrite.Robot;
 import github.robotters.rewrite.RobotProps;
-import github.robotters.rewrite.RobotState;
 
 @TeleOp
 public class Teleop extends LinearOpMode {
@@ -19,8 +18,6 @@ public class Teleop extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
             r.run();
-            RobotState.getInstance().outputtoTelemetry(telemetry);
-            telemetry.update();
         }
 
         r.reset();
