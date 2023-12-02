@@ -1,6 +1,8 @@
 package github.robotters.rewrite;
 
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.IMU;
 
 public class Constants {
     // DriveBase Info
@@ -20,6 +22,12 @@ public class Constants {
     // ARM INFO:
     public static String ArmMotorKey = "arm-motor";
 
+    // IMU Parameters (Needed For Correct IMU Initialization)
+    public static IMU.Parameters RobotImuParameters =
+            new IMU.Parameters(
+                    new RevHubOrientationOnRobot(
+                            RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                            RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
     public static double ArmKp = 1.0, ArmKi = 0.0, ArmKd = 0.0;
 
     // GAME-PAD BINDINGS
