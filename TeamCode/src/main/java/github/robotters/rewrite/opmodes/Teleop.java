@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import github.robotters.rewrite.Constants;
 import github.robotters.rewrite.Robot;
 import github.robotters.rewrite.RobotProps;
+import github.robotters.rewrite.util.BulkReader;
 import github.robotters.rewrite.util.ImuHandler;
 import github.robotters.rewrite.util.RobotStateLogger;
 
@@ -23,10 +24,14 @@ public class Teleop extends LinearOpMode {
 
         RobotStateLogger logger = new RobotStateLogger(r);
 
+        BulkReader bulkReader = new BulkReader(hardwareMap);
+
         r.teleopInit();
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
+            // Bulk Read All Hubs
+            bulkReader.bulkRead();
             // Run IMU Periodic
             imuHandler.imuLoop();
             r.run();
