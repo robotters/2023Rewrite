@@ -11,11 +11,16 @@ public class Constants {
 
     // Airplane Launcher Info
     public static String AirplaneLauncherServoKey = "airplane-servo";
-
     public static double AirplaneLauncherStartPos = 0.0, AirplaneLauncherEndPos = 1.0;
 
-    // GAME-PAD BINDINGS
-    public static GamepadKeys.Button DriveBaseModeSwitchButton = GamepadKeys.Button.Y;
+    // ARM INFO:
+    public static String ArmMotorKey = "arm-motor";
 
-    public static GamepadKeys.Button AirplaneLauncherLaunchButton = GamepadKeys.Button.B;
+    public static double ArmKp = 1.0, ArmKi = 0.0, ArmKd = 0.0;
+
+    // GAME-PAD BINDINGS
+    public static GamepadKeys.Button DriveBaseModeSwitchButton = GamepadKeys.Button.Y,
+            AirplaneLauncherLaunchButton = GamepadKeys.Button.B,
+            ArmUpPositionBinding = GamepadKeys.Button.A,
+            ArmDownPositionBinding = GamepadKeys.Button.X;
 }
