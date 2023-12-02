@@ -5,6 +5,8 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.IMU;
 
 public class Constants {
+    public static int TelemetrySendInterval = 200;
+
     // DriveBase Info
     public static String LeftFrontKey = "left-front",
             RightFrontKey = "right-front",

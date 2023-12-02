@@ -13,10 +13,10 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
     public final RobotProps mRobotProps;
 
     // Subsystems (Don't Initialize)
-    private final DriveTrain mDriveTrain;
-    private final AirplaneLauncher mAirplaneLauncher;
-    private final Arm mArm;
-    private final Claw mClaw;
+    public final DriveTrain mDriveTrain;
+    public final AirplaneLauncher mAirplaneLauncher;
+    public final Arm mArm;
+    public final Claw mClaw;
 
     public Robot(RobotProps props) {
         this.mRobotProps = props;
@@ -33,7 +33,8 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
     public void teleopInit() {
         // Set Default Drive Command to Default RobotCentricDriveCommand
         mDriveTrain.setDefaultCommand(
-                new DriveTrain.DefaultDriveCommand(mDriveTrain, mRobotProps.gamepad1));
+                new DriveTrain.DefaultDriveCommand(
+                        mDriveTrain, mRobotProps.gamepad1, mRobotProps.imuHandler));
 
         // Set Arm Default Run Command
         mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, mRobotProps.gamepad1));

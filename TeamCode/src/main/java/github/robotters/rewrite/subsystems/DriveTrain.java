@@ -84,6 +84,10 @@ public class DriveTrain extends SubsystemBase {
             }
         }
 
+        public DriveOrientation getCurrentDriveOrientation() {
+            return this.currentDriveOrientation;
+        }
+
         enum DriveOrientation {
             FIELD,
             ROBOT
