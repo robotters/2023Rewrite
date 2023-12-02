@@ -13,6 +13,9 @@ import github.robotters.rewrite.util.ImuHandler;
 public class DriveTrain extends SubsystemBase {
     private final MecanumDrive mDriveBase;
 
+    public DefaultDriveCommand.DriveOrientation currentDriveOrientation =
+            DefaultDriveCommand.DriveOrientation.ROBOT;
+
     // Initialize DriveTrain
     public DriveTrain(HardwareMap hwMap) {
         this.mDriveBase =
@@ -35,7 +38,6 @@ public class DriveTrain extends SubsystemBase {
         private final DriveTrain mDriveTrain;
         private final GamepadEx mGamepad;
         private final ImuHandler mImu;
-        private DriveOrientation currentDriveOrientation = DriveOrientation.ROBOT;
 
         public DefaultDriveCommand(
                 DriveTrain driveTrain, GamepadEx gamepad, ImuHandler imuHandler) {
@@ -53,7 +55,7 @@ public class DriveTrain extends SubsystemBase {
         }
 
         private void handleDriving() {
-            switch (currentDriveOrientation) {
+            switch (mDriveTrain.currentDriveOrientation) {
                 case FIELD:
                     this.mDriveTrain.DriveFieldOriented(
                             mGamepad.getLeftX(),
@@ -74,18 +76,14 @@ public class DriveTrain extends SubsystemBase {
                 return;
             }
 
-            switch (currentDriveOrientation) {
+            switch (mDriveTrain.currentDriveOrientation) {
                 case FIELD:
-                    currentDriveOrientation = DriveOrientation.ROBOT;
+                    mDriveTrain.currentDriveOrientation = DriveOrientation.ROBOT;
                     break;
                 case ROBOT:
-                    currentDriveOrientation = DriveOrientation.FIELD;
+                    mDriveTrain.currentDriveOrientation = DriveOrientation.FIELD;
                     break;
             }
-        }
-
-        public DriveOrientation getCurrentDriveOrientation() {
-            return this.currentDriveOrientation;
         }
 
         enum DriveOrientation {
