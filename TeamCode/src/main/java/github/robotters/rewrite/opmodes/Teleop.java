@@ -14,7 +14,7 @@ import github.robotters.rewrite.util.RobotStateLogger;
 public class Teleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        ImuHandler imuHandler = new ImuHandler(hardwareMap);
+        ImuHandler imuHandler = new ImuHandler(hardwareMap, 0.0);
         RobotProps props = new RobotProps(hardwareMap, gamepad1, imuHandler);
 
         // Update the Driver Station with Telemetry every N Milliseconds
