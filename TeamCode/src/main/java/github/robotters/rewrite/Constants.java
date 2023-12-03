@@ -37,5 +37,6 @@ public class Constants {
             AirplaneLauncherLaunchButton = GamepadKeys.Button.B,
             ArmUpPositionBinding = GamepadKeys.Button.A,
             ArmDownPositionBinding = GamepadKeys.Button.X,
-            ClawOpenCloseBinding = GamepadKeys.Button.LEFT_BUMPER;
+            ClawOpenCloseBinding = GamepadKeys.Button.LEFT_BUMPER,
+            IMUPoseResetButton = GamepadKeys.Button.START;
 }

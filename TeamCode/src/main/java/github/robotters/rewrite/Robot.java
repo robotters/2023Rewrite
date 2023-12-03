@@ -46,6 +46,11 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         props.gamepad1
                 .getGamepadButton(Constants.AirplaneLauncherLaunchButton)
                 .whenPressed(new InstantCommand(mAirplaneLauncher::Launch, mAirplaneLauncher));
+
+        // Reset Yaw When Button is Pressed
+        props.gamepad1
+                .getGamepadButton(Constants.IMUPoseResetButton)
+                .whenReleased(new InstantCommand(mRobotProps.imuHandler::resetYaw));
     }
 
     public void autoInit() {}

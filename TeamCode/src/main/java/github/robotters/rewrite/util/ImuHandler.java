@@ -28,4 +28,8 @@ public class ImuHandler {
     public double getDegreessYaw() {
         return headingDegrees;
     }
+
+    public void resetYaw() {
+        mImu.resetYaw();
+    }
 }
