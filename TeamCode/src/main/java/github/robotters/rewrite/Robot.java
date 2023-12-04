@@ -21,6 +21,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
 
     public Robot(RobotProps props) {
         this.mRobotProps = props;
+        mRobotProps.logger.init(this);
 
         // Subsystem Initialization
         mDriveTrain = new DriveTrain(props.mHardwaremap);
@@ -52,6 +53,14 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         props.gamepad1
                 .getGamepadButton(Constants.IMUPoseResetButton)
                 .whenReleased(new InstantCommand(mRobotProps.imuHandler::resetYaw));
+    }
+
+    @Override
+    public void run() {
+        mRobotProps.bulkReader.bulkRead();
+        mRobotProps.imuHandler.imuLoop();
+        super.run();
+        mRobotProps.logger.Log();
     }
 
     public void autoInit(AutoSequence sequence) {

@@ -17,17 +17,16 @@ public class Teleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         ImuHandler imuHandler = new ImuHandler(hardwareMap, 0.0);
-        RobotProps props = new RobotProps(hardwareMap, imuHandler);
 
         // Update the Driver Station with Telemetry every N Milliseconds
         telemetry.setMsTransmissionInterval(Constants.TelemetrySendInterval);
 
-        Robot r = RobotHolder.getRobot(props);
-
-        RobotStateLogger logger = new RobotStateLogger(r);
+        RobotStateLogger logger = new RobotStateLogger(telemetry);
 
         BulkReader bulkReader = new BulkReader(hardwareMap);
 
+        RobotProps props = new RobotProps(hardwareMap, imuHandler, bulkReader, logger);
+        Robot r = RobotHolder.getRobot(props);
         r.teleopInit(new TeleopProps(gamepad1));
         waitForStart();
 
@@ -37,7 +36,6 @@ public class Teleop extends LinearOpMode {
             // Run IMU Periodic
             imuHandler.imuLoop();
             r.run();
-            logger.Log(telemetry);
             telemetry.update();
         }
 
