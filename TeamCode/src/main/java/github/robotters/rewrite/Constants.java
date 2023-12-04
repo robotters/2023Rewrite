@@ -15,7 +15,7 @@ public class Constants {
 
     // Airplane Launcher Info
     public static String AirplaneLauncherServoKey = "airplane-servo";
-    public static double AirplaneLauncherStartPos = 0.0, AirplaneLauncherEndPos = 1.0;
+    public static double AirplaneLauncherStartPos = 1.0, AirplaneLauncherEndPos = 0;
 
     // CLAW INFO:
     // PLEASE MAKE THIS NON-CR

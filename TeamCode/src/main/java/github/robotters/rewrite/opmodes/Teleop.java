@@ -27,6 +27,8 @@ public class Teleop extends LinearOpMode {
 
         RobotProps props = new RobotProps(hardwareMap, imuHandler, bulkReader, logger);
         Robot r = RobotHolder.getRobot(props);
+        telemetry.addData("STATUS", "WAITING");
+        telemetry.update();
         r.teleopInit(new TeleopProps(gamepad1));
         waitForStart();
 

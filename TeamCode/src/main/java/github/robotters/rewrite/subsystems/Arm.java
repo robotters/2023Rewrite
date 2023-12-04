@@ -20,7 +20,8 @@ public class Arm extends SubsystemBase {
     public Arm(HardwareMap hwMap) {
         mMotor = hwMap.get(DcMotor.class, Constants.ArmMotorKey);
         mMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        mMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        mMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         armState = ArmPosition.DOWN;
     }
@@ -35,8 +36,8 @@ public class Arm extends SubsystemBase {
 
     // The Arm Position Enum Provides Target Arm Positions that Can Later Be Selected
     public enum ArmPosition {
-        DOWN(0),
-        UP(1000);
+        DOWN(0.0),
+        UP(3.0);
 
         public final double position;
 
@@ -76,12 +77,11 @@ public class Arm extends SubsystemBase {
             if (down) {
                 mArm.armState = ArmPosition.DOWN;
             }
-
-            mArm.mPidController.setSetPoint(mArm.armState.position);
         }
 
         public void runArmToPosition() {
-            mArm.RunToPower(mArm.mPidController.calculate(mArm.GetArmPosition()));
+            mArm.RunToPower(
+                    mArm.mPidController.calculate(mArm.GetArmPosition(), mArm.armState.position));
         }
     }
 }
