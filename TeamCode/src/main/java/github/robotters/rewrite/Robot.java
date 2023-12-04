@@ -2,6 +2,7 @@ package github.robotters.rewrite;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 
+import github.robotters.rewrite.autoutil.AutoSequence;
 import github.robotters.rewrite.subsystems.AirplaneLauncher;
 import github.robotters.rewrite.subsystems.Arm;
 import github.robotters.rewrite.subsystems.Claw;
@@ -53,5 +54,13 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
                 .whenReleased(new InstantCommand(mRobotProps.imuHandler::resetYaw));
     }
 
-    public void autoInit() {}
+    public void autoInit(AutoSequence sequence) {
+        // Schedule the Provided init Sequence
+        schedule(sequence.init());
+    }
+
+    public void autoRun(AutoSequence sequence) {
+        // Schedule the provided run sequence
+        schedule(sequence.main());
+    }
 }
