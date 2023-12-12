@@ -7,6 +7,7 @@ import github.robotters.rewrite.subsystems.AirplaneLauncher;
 import github.robotters.rewrite.subsystems.Arm;
 import github.robotters.rewrite.subsystems.Claw;
 import github.robotters.rewrite.subsystems.DriveTrain;
+import github.robotters.rewrite.subsystems.ElementDetector;
 
 // The Robot Class Represents the Robot, with it's subsystems and commands.
 public class Robot extends com.arcrobotics.ftclib.command.Robot {
@@ -18,6 +19,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
     public final AirplaneLauncher mAirplaneLauncher;
     public final Arm mArm;
     public final Claw mClaw;
+    public final ElementDetector mElementDetector;
 
     public Robot(RobotProps props) {
         this.mRobotProps = props;
@@ -28,8 +30,9 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         mAirplaneLauncher = new AirplaneLauncher(props.mHardwaremap);
         mArm = new Arm(props.mHardwaremap);
         mClaw = new Claw(props.mHardwaremap);
+        mElementDetector = new ElementDetector(props.mHardwaremap, props.color);
 
-        register(mDriveTrain, mAirplaneLauncher, mArm, mClaw);
+        register(mDriveTrain, mAirplaneLauncher, mArm, mClaw, mElementDetector);
     }
 
     public void teleopInit(TeleopProps props) {
