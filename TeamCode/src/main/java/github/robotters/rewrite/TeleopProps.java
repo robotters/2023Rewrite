@@ -11,11 +11,6 @@ public class TeleopProps {
         this.gamepad1 = new GamepadEx(gamepad1);
     }
 
-    public enum Color {
-        RED,
-        BLUE
-    }
-
     public enum Position {
         TOP,
         BOTTOM,

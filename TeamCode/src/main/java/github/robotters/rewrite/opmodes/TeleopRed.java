@@ -13,7 +13,7 @@ import github.robotters.rewrite.util.RobotHolder;
 import github.robotters.rewrite.util.RobotStateLogger;
 
 @TeleOp
-public class Teleop extends LinearOpMode {
+public class TeleopRed extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         ImuHandler imuHandler = new ImuHandler(hardwareMap, 0.0);
@@ -25,7 +25,7 @@ public class Teleop extends LinearOpMode {
 
         BulkReader bulkReader = new BulkReader(hardwareMap);
 
-        RobotProps props = new RobotProps(hardwareMap, imuHandler, bulkReader, logger);
+        RobotProps props = new RobotProps(hardwareMap, imuHandler, bulkReader, logger, RobotProps.Color.RED);
         Robot r = RobotHolder.getRobot(props);
         telemetry.addData("STATUS", "WAITING");
         telemetry.update();

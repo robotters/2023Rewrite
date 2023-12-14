@@ -21,14 +21,24 @@ public class RobotProps {
 
     public BulkReader bulkReader;
 
+    public Color color;
+
     public RobotProps(
             HardwareMap hwMap,
             ImuHandler imuHandler,
             BulkReader bulkReader,
-            RobotStateLogger logger) {
+            RobotStateLogger logger,
+            Color color) {
         this.mHardwaremap = hwMap;
         this.imuHandler = imuHandler;
         this.bulkReader = bulkReader;
         this.logger = logger;
+        this.color = color;
     }
+
+    public enum Color {
+        RED,
+        BLUE
+    }
+
 }
