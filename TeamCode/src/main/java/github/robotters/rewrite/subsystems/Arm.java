@@ -59,7 +59,6 @@ public class Arm extends SubsystemBase {
 
         @Override
         public void execute() {
-            setState();
             runArmToPosition();
         }
 
@@ -80,8 +79,7 @@ public class Arm extends SubsystemBase {
         }
 
         public void runArmToPosition() {
-            mArm.RunToPower(
-                    mArm.mPidController.calculate(mArm.GetArmPosition(), mArm.armState.position));
+            mArm.RunToPower(mGamepad.getLeftY());
         }
     }
 }

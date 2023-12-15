@@ -44,11 +44,19 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         // Set Intake default run command
         mIntake.setDefaultCommand(new Intake.DefaultIntakeCommand(mIntake));
 
-        props.gamepad1.getGamepadButton(Constants.IntakeInBinding).whenPressed(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.IN);})).whenReleased(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.STOPPED);}));
-        props.gamepad1.getGamepadButton(Constants.IntakeOutBinding).whenPressed(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.OUT);})).whenReleased(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.STOPPED);}));
+        props.gamepad2.getGamepadButton(Constants.IntakeInBinding).whenPressed(new InstantCommand(() -> {
+            mIntake.setPosition(Intake.IntakePosition.IN);
+        })).whenReleased(new InstantCommand(() -> {
+            mIntake.setPosition(Intake.IntakePosition.STOPPED);
+        }));
+        props.gamepad2.getGamepadButton(Constants.IntakeOutBinding).whenPressed(new InstantCommand(() -> {
+            mIntake.setPosition(Intake.IntakePosition.OUT);
+        })).whenReleased(new InstantCommand(() -> {
+            mIntake.setPosition(Intake.IntakePosition.STOPPED);
+        }));
 
         // Set Arm Default Run Command
-        mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad1));
+        mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad2));
 
         // Launch Airplane When Button Is Pressed
         props.gamepad1

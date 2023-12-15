@@ -29,7 +29,7 @@ public class TeleopBlue extends LinearOpMode {
         Robot r = RobotHolder.getRobot(props);
         telemetry.addData("STATUS", "WAITING");
         telemetry.update();
-        r.teleopInit(new TeleopProps(gamepad1));
+        r.teleopInit(new TeleopProps(gamepad1, gamepad2));
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
