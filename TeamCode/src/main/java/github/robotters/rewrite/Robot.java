@@ -7,6 +7,7 @@ import github.robotters.rewrite.subsystems.AirplaneLauncher;
 import github.robotters.rewrite.subsystems.Arm;
 import github.robotters.rewrite.subsystems.DriveTrain;
 import github.robotters.rewrite.subsystems.ElementDetector;
+import github.robotters.rewrite.subsystems.Intake;
 
 // The Robot Class Represents the Robot, with it's subsystems and commands.
 public class Robot extends com.arcrobotics.ftclib.command.Robot {
@@ -18,6 +19,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
     public final AirplaneLauncher mAirplaneLauncher;
     public final Arm mArm;
     //public final ElementDetector mElementDetector;
+    public final Intake mIntake;
 
     public Robot(RobotProps props) {
         this.mRobotProps = props;
@@ -27,6 +29,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         mDriveTrain = new DriveTrain(props.mHardwaremap);
         mAirplaneLauncher = new AirplaneLauncher(props.mHardwaremap);
         mArm = new Arm(props.mHardwaremap);
+        mIntake = new Intake(props.mHardwaremap);
         //mElementDetector = new ElementDetector(props.mHardwaremap, props.color);
 
         register(mDriveTrain, mAirplaneLauncher, mArm);
@@ -37,6 +40,12 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         mDriveTrain.setDefaultCommand(
                 new DriveTrain.DefaultDriveCommand(
                         mDriveTrain, props.gamepad1, mRobotProps.imuHandler));
+
+        // Set Intake default run command
+        mIntake.setDefaultCommand(new Intake.DefaultIntakeCommand(mIntake));
+
+        props.gamepad1.getGamepadButton(Constants.IntakeInBinding).whenPressed(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.IN);})).whenReleased(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.STOPPED);}));
+        props.gamepad1.getGamepadButton(Constants.IntakeOutBinding).whenPressed(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.OUT);})).whenReleased(new InstantCommand(() -> { mIntake.setPosition(Intake.IntakePosition.STOPPED);}));
 
         // Set Arm Default Run Command
         mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad1));
