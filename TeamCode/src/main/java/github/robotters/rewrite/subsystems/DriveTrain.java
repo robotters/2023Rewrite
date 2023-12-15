@@ -60,12 +60,12 @@ public class DriveTrain extends SubsystemBase {
                     this.mDriveTrain.DriveFieldOriented(
                             mGamepad.getLeftX(),
                             mGamepad.getLeftY(),
-                            mGamepad.getRightX(),
+                            -mGamepad.getRightX(),
                             mImu.getDegreessYaw());
                     break;
                 case ROBOT:
                     this.mDriveTrain.DriveRobotOriented(
-                            mGamepad.getLeftX(), mGamepad.getLeftY(), mGamepad.getRightX());
+                            mGamepad.getLeftX(), mGamepad.getLeftY(), -mGamepad.getRightX());
                     break;
             }
         }
