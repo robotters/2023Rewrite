@@ -5,7 +5,6 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import github.robotters.rewrite.autoutil.AutoSequence;
 import github.robotters.rewrite.subsystems.AirplaneLauncher;
 import github.robotters.rewrite.subsystems.Arm;
-import github.robotters.rewrite.subsystems.Claw;
 import github.robotters.rewrite.subsystems.DriveTrain;
 import github.robotters.rewrite.subsystems.ElementDetector;
 
@@ -18,7 +17,6 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
     public final DriveTrain mDriveTrain;
     public final AirplaneLauncher mAirplaneLauncher;
     public final Arm mArm;
-    public final Claw mClaw;
     public final ElementDetector mElementDetector;
 
     public Robot(RobotProps props) {
@@ -29,10 +27,9 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         mDriveTrain = new DriveTrain(props.mHardwaremap);
         mAirplaneLauncher = new AirplaneLauncher(props.mHardwaremap);
         mArm = new Arm(props.mHardwaremap);
-        mClaw = new Claw(props.mHardwaremap);
         mElementDetector = new ElementDetector(props.mHardwaremap, props.color);
 
-        register(mDriveTrain, mAirplaneLauncher, mArm, mClaw, mElementDetector);
+        register(mDriveTrain, mAirplaneLauncher, mArm, mElementDetector);
     }
 
     public void teleopInit(TeleopProps props) {
@@ -43,9 +40,6 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
 
         // Set Arm Default Run Command
         mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad1));
-
-        // Set Claw Default Run Command
-        mClaw.setDefaultCommand(new Claw.DefaultClawCommand(mClaw, props.gamepad1));
 
         // Launch Airplane When Button Is Pressed
         props.gamepad1

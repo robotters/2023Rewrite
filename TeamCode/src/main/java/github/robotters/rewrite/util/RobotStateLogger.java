@@ -19,7 +19,6 @@ public class RobotStateLogger {
 
     // Logs Robot States Onto the Provided Telemetry Object
     public void Log() {
-        telemetry.addData("CLAW STATE", mRobot.mClaw.mClawState);
         telemetry.addData("ARM TARGET POSITION", mRobot.mArm.armState);
         telemetry.addData("DRIVETRAIN MODE", mRobot.mDriveTrain.currentDriveOrientation);
         telemetry.addData("ARM CURRENT", mRobot.mArm.GetArmPosition());
