@@ -17,7 +17,7 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
     public final DriveTrain mDriveTrain;
     public final AirplaneLauncher mAirplaneLauncher;
     public final Arm mArm;
-    public final ElementDetector mElementDetector;
+    //public final ElementDetector mElementDetector;
 
     public Robot(RobotProps props) {
         this.mRobotProps = props;
@@ -27,9 +27,9 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         mDriveTrain = new DriveTrain(props.mHardwaremap);
         mAirplaneLauncher = new AirplaneLauncher(props.mHardwaremap);
         mArm = new Arm(props.mHardwaremap);
-        mElementDetector = new ElementDetector(props.mHardwaremap, props.color);
+        //mElementDetector = new ElementDetector(props.mHardwaremap, props.color);
 
-        register(mDriveTrain, mAirplaneLauncher, mArm, mElementDetector);
+        register(mDriveTrain, mAirplaneLauncher, mArm);
     }
 
     public void teleopInit(TeleopProps props) {
