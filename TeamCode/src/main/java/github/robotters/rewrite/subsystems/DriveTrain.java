@@ -14,7 +14,7 @@ public class DriveTrain extends SubsystemBase {
     private final MecanumDrive mDriveBase;
 
     public DefaultDriveCommand.DriveOrientation currentDriveOrientation =
-            DefaultDriveCommand.DriveOrientation.ROBOT;
+            DefaultDriveCommand.DriveOrientation.FIELD;
 
     // Initialize DriveTrain
     public DriveTrain(HardwareMap hwMap) {
