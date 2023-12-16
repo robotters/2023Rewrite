@@ -4,6 +4,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import github.robotters.rewrite.subsystems.DriveTrain;
+
 public class Constants {
     public static int TelemetrySendInterval = 200;
 
@@ -16,10 +18,6 @@ public class Constants {
     // Airplane Launcher Info
     public static String AirplaneLauncherServoKey = "airplane-servo";
     public static double AirplaneLauncherStartPos = 1.0, AirplaneLauncherEndPos = 0;
-
-    // CLAW INFO:
-    // PLEASE MAKE THIS NON-CR
-    public static String ClawServoKey = "claw-servo";
 
     // ARM INFO:
     public static String ArmMotorKey = "arm-motor";
@@ -42,5 +40,9 @@ public class Constants {
             ArmDownPositionBinding = GamepadKeys.Button.X,
             IntakeInBinding = GamepadKeys.Button.LEFT_BUMPER,
             IntakeOutBinding = GamepadKeys.Button.RIGHT_BUMPER,
+            DriveTrainCoefficientsScaleBinding = GamepadKeys.Button.LEFT_BUMPER,
             IMUPoseResetButton = GamepadKeys.Button.START;
+
+    // DRIVE COEFFICIENTS
+    public static DriveTrain.DriveTrainCoefficients DriveTrainCoefficients = new DriveTrain.DriveTrainCoefficients(1.0, 1.0, -1.0);
 }

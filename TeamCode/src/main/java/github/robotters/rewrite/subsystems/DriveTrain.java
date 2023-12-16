@@ -16,6 +16,10 @@ public class DriveTrain extends SubsystemBase {
     public DefaultDriveCommand.DriveOrientation currentDriveOrientation =
             DefaultDriveCommand.DriveOrientation.FIELD;
 
+    public CoefficientsStatus coefficientsStatus = CoefficientsStatus.NORMAL;
+
+    private DriveTrainCoefficients coefficients = new DriveTrainCoefficients(Constants.DriveTrainCoefficients.x, Constants.DriveTrainCoefficients.y, Constants.DriveTrainCoefficients.z);
+
     // Initialize DriveTrain
     public DriveTrain(HardwareMap hwMap) {
         this.mDriveBase =
@@ -32,6 +36,37 @@ public class DriveTrain extends SubsystemBase {
 
     public void DriveFieldOriented(double x, double y, double r, double heading) {
         mDriveBase.driveFieldCentric(x, y, r, heading);
+    }
+
+    public void HalfDriveCoefficients() {
+        switch (coefficientsStatus) {
+            case NORMAL:
+                coefficients.x = Constants.DriveTrainCoefficients.x * 0.5;
+                coefficients.y = Constants.DriveTrainCoefficients.y * 0.5;
+                coefficients.z = Constants.DriveTrainCoefficients.z * 0.5;
+                coefficientsStatus = CoefficientsStatus.HALVED;
+                break;
+            case HALVED:
+                coefficients.x = Constants.DriveTrainCoefficients.x;
+                coefficients.y = Constants.DriveTrainCoefficients.y;
+                coefficients.z = Constants.DriveTrainCoefficients.z;
+                coefficientsStatus = CoefficientsStatus.NORMAL;
+                break;
+        }
+    }
+
+    public enum CoefficientsStatus {
+        NORMAL,
+        HALVED
+    }
+
+    public static class DriveTrainCoefficients {
+        double x, y, z;
+        public DriveTrainCoefficients(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
     }
 
     public static class DefaultDriveCommand extends CommandBase {
@@ -58,14 +93,14 @@ public class DriveTrain extends SubsystemBase {
             switch (mDriveTrain.currentDriveOrientation) {
                 case FIELD:
                     this.mDriveTrain.DriveFieldOriented(
-                            mGamepad.getLeftX(),
-                            mGamepad.getLeftY(),
-                            -mGamepad.getRightX(),
+                            mGamepad.getLeftX() * mDriveTrain.coefficients.x,
+                            mGamepad.getLeftY() * mDriveTrain.coefficients.y,
+                            mGamepad.getRightX() * mDriveTrain.coefficients.z,
                             mImu.getDegreessYaw());
                     break;
                 case ROBOT:
                     this.mDriveTrain.DriveRobotOriented(
-                            mGamepad.getLeftX(), mGamepad.getLeftY(), -mGamepad.getRightX());
+                            mGamepad.getLeftX() * mDriveTrain.coefficients.x, mGamepad.getLeftY() * mDriveTrain.coefficients.y, -mGamepad.getRightX() * mDriveTrain.coefficients.z);
                     break;
             }
         }

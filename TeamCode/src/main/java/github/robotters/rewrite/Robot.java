@@ -67,6 +67,10 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
         props.gamepad1
                 .getGamepadButton(Constants.IMUPoseResetButton)
                 .whenReleased(new InstantCommand(mRobotProps.imuHandler::resetYaw));
+
+        props.gamepad1
+                .getGamepadButton(Constants.DriveTrainCoefficientsScaleBinding)
+                .whenReleased(new InstantCommand(mDriveTrain::HalfDriveCoefficients, mDriveTrain));
     }
 
     @Override
