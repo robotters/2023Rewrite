@@ -42,10 +42,10 @@ public class Robot extends com.arcrobotics.ftclib.command.Robot {
                         mDriveTrain, props.gamepad1, mRobotProps.imuHandler));
 
         // Set Arm Default Run Command
-        mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad1));
+        mArm.setDefaultCommand(new Arm.ArmDefaultRunCommand(mArm, props.gamepad2));
 
         // Set Intake Default Run Command
-        mIntake.setDefaultCommand(new Intake.DefaultIntakeCommand(mIntake, props.gamepad1));
+        mIntake.setDefaultCommand(new Intake.DefaultIntakeCommand(mIntake, props.gamepad2));
 
         // Launch Airplane When Button Is Pressed
         props.gamepad1
