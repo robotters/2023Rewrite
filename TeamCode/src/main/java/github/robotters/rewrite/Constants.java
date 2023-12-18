@@ -24,6 +24,9 @@ public class Constants {
     // ARM INFO:
     public static String ArmMotorKey = "arm-motor";
 
+    // INTAKE INFO:
+    public static String IntakeKey = "in";
+
     // IMU Parameters (Needed For Correct IMU Initialization)
     public static IMU.Parameters RobotImuParameters =
             new IMU.Parameters(
@@ -37,6 +40,7 @@ public class Constants {
             AirplaneLauncherLaunchButton = GamepadKeys.Button.B,
             ArmUpPositionBinding = GamepadKeys.Button.A,
             ArmDownPositionBinding = GamepadKeys.Button.X,
-            ClawOpenCloseBinding = GamepadKeys.Button.LEFT_BUMPER,
+            IntakeInBinding = GamepadKeys.Button.LEFT_BUMPER,
+            IntakeOutBinding = GamepadKeys.Button.RIGHT_BUMPER,
             IMUPoseResetButton = GamepadKeys.Button.START;
 }
